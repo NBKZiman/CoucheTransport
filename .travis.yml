@@ -1,0 +1,16 @@
+before_install:
+- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
+  texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng texlive-lang-french
+  latexmk latex-beamer
+script:
+- mkdir _build
+- latexmk -pdf -output-directory=_build -jobname=Transport Transport.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: lLpY2p3bbo/5NGWG/75g4IYIWqyTIjevBcvxUCsdwBDRS3Vr1WIPrr/ZnHPDs+Av9GQ0LD4oSgToT93+mgZsJSwpi2+XwT8JkBdANKuSOeex8Qenum3j/bC/58R3qz936KKErS/3HrMcmQvruBQ5KWaTHBSi6nn13uJw5CklX+ASCYI23lpS6UDdjPQm42R+EAnjfP86ThgjiExKp5cZIHKMAiaCP6S5TUvSp+X+y8m2CCDDuIrMnp4W62V07/vK/wKFA5SGq/azP9z3nF4kkrHzGGZU4xGvjBroQWV/W4OwPnxkg46SQUPNVHdDiwDTuA5dpvks7CFiH0wsVsEh5OnPoMKdxGkuL90JkM63Tf7/qGBheVl+tb9OgwHMBTPLIcpUd4HS0yWBne0b/UW0j2cNs0AvPHWwEYglgUyxIUKGkNu3yCt+YNGEIyFdiIPIdv0uxsg//SUUlyq30F7p2jx13H+YdlHvrCN5prze46+gZeak1orsVurMA2nu6qSucxJW3vSOXPba9dQ0hOw0Q0TjlJuA81eYrxLD7HX+NugzduQ09Znl9DFKxxHaJB60FIXWjQ+DDrZv/9IIMfL9tTrEgxycK2y36YQhR4Vq5yZcQLKqF+Oqnf7nkd6N0rvvHEtkVmLEjhEATWMM4QMhBY0lxERGGYQ/DUe9vIR7tcY=
+  file: _build/Transport.pdf
+  skip_cleanup: true
+  on:
+    repo: NBKZiman/CoucheTransport
+tags: true
